@@ -29,13 +29,6 @@ nav svg, .searchbox svg{
     height: 20px;
 }
 
-.promote{
-    height: 300px;
-    vertical-align: auto;
-    padding-left: 30px;
-    background-color: #C7B39F;
-}
-
 .searchbox{
     padding: 20px;
     background-color: white;
@@ -50,6 +43,21 @@ nav svg, .searchbox svg{
     width: 96%;
     font-weight: 600;
     font-size: large;
+}
+
+.promote{
+    height: 250px;
+    vertical-align: auto;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    background-color: #C7B39F;
+    font-size: 40px;
+}
+
+.promote .pr{
+    padding: auto;
 }
 
 .category{
@@ -75,6 +83,19 @@ nav svg, .searchbox svg{
 .product{
     width: fit-content;
     height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.product .p-name{
+    font-size: medium;
+    font-weight: lighter;
+}
+
+.product .price{
+    font-size: larger;
+    font-weight: bold;
 }
 
 .product .wrapper{
@@ -86,16 +107,31 @@ nav svg, .searchbox svg{
     border-radius: 20px;
 }
 
-.product .info{
+.info, .info-winter, .info-daily, .info-best {
     width: fit-content;
-    padding: 8px;
+    padding: 6px;
     border-radius: 10px;
-    background-color: #c74809;
     position: absolute;
     left: 5%;
     top: 5%;
-    font-size: medium;
+    font-size: small;
     color: white;
+}
+
+.product .info{
+    background-color: #c74809;
+}
+
+.product .info-winter{
+    background-color: #099bc7;
+}
+
+.product .info-daily{
+    background-color: #c7c409;
+}
+
+.product .info-best{
+    background-color: #09c73f;
 }
 
 .product .cart{
@@ -114,15 +150,16 @@ footer{
     padding-right: 5%;
     padding-top: 3%;
     padding-bottom: 3%;
-    display: flex;
-    justify-content: space-between;
     background-color: #C7B39F;
 }
 
 .fo-start{
     width: 35%;
-    display: flex;
-    flex-direction: column;
+    row-gap: 10%;
+}
+
+.fo-start img{
+    width: 7vw;
 }
 
 .fo-end{
@@ -133,10 +170,20 @@ footer{
     width: 2vw;
 }
 
-.fo-start img{
-    width: 7vw;
+.fo-end ul{
+    max-width: 50%;
+    list-style-type: none;
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 15%;
 }
 
 .fo{
     width: 20%;
+}
+
+.fo ul{
+    list-style-type: none;
+    padding-left: 0;
 }
