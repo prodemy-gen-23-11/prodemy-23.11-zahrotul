@@ -1,0 +1,142 @@
+body{
+    background-color: #FAF6F3;
+    font-family: 'Amaranth', sans-serif;
+    width: 100%;
+    margin: 0px;
+}
+
+nav{
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 100;
+}
+
+.content{
+    margin-top: 5vh !important;
+    margin-bottom: 5vh !important;
+    max-width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+}
+
+nav svg, .searchbox svg{
+    width: 20px;
+    height: 20px;
+}
+
+.promote{
+    height: 300px;
+    vertical-align: auto;
+    padding-left: 30px;
+    background-color: #C7B39F;
+}
+
+.searchbox{
+    padding: 20px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.searchbox input{
+    border: none;
+    outline: none;
+    width: 96%;
+    font-weight: 600;
+    font-size: large;
+}
+
+.category{
+    width: fit-content;
+    min-width: 50px;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: medium;
+    color: black;
+    text-align: center;
+    background-color: #C7B39F;
+}
+
+.products{
+    max-width: 80%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    /* justify-content: space-between; */
+    grid-gap: 1vw;
+}
+
+.product{
+    width: fit-content;
+    height: fit-content;
+}
+
+.product .wrapper{
+    position: relative;
+}
+
+.product img{
+    width: 19vw;
+    border-radius: 20px;
+}
+
+.product .info{
+    width: fit-content;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #c74809;
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    font-size: medium;
+    color: white;
+}
+
+.product .cart{
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+footer{
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #C7B39F;
+}
+
+.fo-start{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+.fo-end{
+    width: 20%;
+}
+
+.fo-end svg{
+    width: 2vw;
+}
+
+.fo-start img{
+    width: 7vw;
+}
+
+.fo{
+    width: 20%;
+}
