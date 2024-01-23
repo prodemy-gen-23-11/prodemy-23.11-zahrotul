@@ -83,7 +83,7 @@ nav svg, .searchbox svg{
 
 .promote{
     height: 250px;
-    vertical-align: auto;
+    align-items: center;
     padding-left: 10vw;
     padding-right: 10vw;
     padding-top: 5vh;
@@ -233,19 +233,16 @@ nav svg, .searchbox svg{
     position: absolute;
     bottom: 5%;
     right: -15%;
-    visibility: hidden;
     z-index: 10;
     transition: all .4s ease;
 }
 
 .product:hover .cart{
-    visibility: visible;
     right: 5%;
-    opacity: 1;
     transition: all .4s ease;
 }
 
-.cart:hover{
+.wrapper > .cart:hover{
     background-color: black;
     color: white;
     transition: all .4s ease;
