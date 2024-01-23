@@ -25,9 +25,22 @@ nav{
     align-items: center;
 }
 
+nav > h3{
+    cursor: pointer;
+}
+
 nav .icons{
     display: flex;
     gap: 2vw;
+    cursor: pointer;
+}
+
+nav .icons i{
+    font-size: large;
+}
+
+nav .icons i:hover{
+    color: #C7B39F;
 }
 
 .content{
@@ -81,10 +94,6 @@ nav svg, .searchbox svg{
     gap: 5vw;
 }
 
-.promote .pr{
-    padding: auto;
-}
-
 .promote img{
     height: 200px;
 }
@@ -104,6 +113,13 @@ nav svg, .searchbox svg{
     color: black;
     text-align: center;
     background-color: #eee7e1;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.filter > .category:hover{
+    background-color: #C7B39F;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .filter hr{
@@ -112,10 +128,9 @@ nav svg, .searchbox svg{
 }
 
 .products{
-    max-width: 80%;
+    max-width: 100%;
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    /* justify-content: space-between; */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     grid-gap: 1vw;
 }
 
@@ -124,10 +139,13 @@ nav svg, .searchbox svg{
     height: fit-content;
     display: flex;
     flex-direction: column;
-    gap: 1vh;
+    gap: 10px;
+    cursor: pointer;
+    overflow: hidden;
 }
 
 .product .p-name{
+    max-width: 280px;
     font-size: medium;
     font-weight: lighter;
 }
@@ -142,8 +160,40 @@ nav svg, .searchbox svg{
 }
 
 .product img{
-    width: 19vw;
+    width: 280px;
     border-radius: 20px;
+    filter: brightness(100%);
+    transition: all 1s ease;
+}
+
+.product:hover img{
+    filter: brightness(75%);
+    transition: all 1s ease;
+}
+
+.product .variant{
+    display: flex;
+    gap: 10px;
+}
+
+.product .variant .variant-1{
+    border-radius: 50%;
+    background-color: #FAF6F3;
+    width: 20px;
+    border-width: 1pt;
+    border-style: solid;
+    border-color: grey;
+    aspect-ratio: 1/1;
+}
+
+.product .variant .variant-2{
+    border-radius: 50%;
+    background-color: black;
+    border-width: 1pt;
+    border-style: solid;
+    border-color: grey;
+    width: 20px;
+    aspect-ratio: 1/1;
 }
 
 .info, .info-winter, .info-daily, .info-best {
@@ -155,6 +205,7 @@ nav svg, .searchbox svg{
     top: 5%;
     font-size: small;
     color: #FAF6F3;
+    z-index: 10;
 }
 
 .product .info{
@@ -181,7 +232,23 @@ nav svg, .searchbox svg{
     background-color: white;
     position: absolute;
     bottom: 5%;
+    right: -15%;
+    visibility: hidden;
+    z-index: 10;
+    transition: all .4s ease;
+}
+
+.product:hover .cart{
+    visibility: visible;
     right: 5%;
+    opacity: 1;
+    transition: all .4s ease;
+}
+
+.cart:hover{
+    background-color: black;
+    color: white;
+    transition: all .4s ease;
 }
 
 footer{
@@ -211,17 +278,28 @@ footer{
     width: 20%;
 }
 
-.fo-end svg{
-    width: 2vw;
-}
-
 .fo-end ul{
     max-width: 50%;
     list-style-type: none;
     padding-left: 0;
     display: grid;
     grid-template-columns: auto auto auto;
-    grid-gap: 15%;
+    grid-column-gap: 15%;
+    grid-row-gap: 30%;
+}
+
+.fo-end li{
+    cursor: pointer;
+}
+
+.fo-end li a i{
+    text-decoration: none;
+    font-size: x-large;
+    color: black;
+}
+
+.fo-end li a i:hover{
+    color: #eee7e1;
 }
 
 .fo{
@@ -239,4 +317,9 @@ footer{
 .fo li{
     margin-top: 1vh;
     margin-bottom: 1vh;
+    cursor: pointer;
+}
+
+.fo li:hover{
+    color: #eee7e1;
 }
