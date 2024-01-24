@@ -487,10 +487,10 @@ footer{
         height: var(--pr-lg);
     }
     .promote img{
-        height: var(--pr-sm);
+        height: var(--pr-lg);
     }
     .promote .pr{
-        font-size: x-large;
+        font-size: xx-large;
     }
 
     .filter .category{
