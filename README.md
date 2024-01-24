@@ -387,6 +387,6 @@ Responsive design pada tailwind
 | `2xl` | 1536px | @media (min-width: 1536px) { ... } |
 
 ## More Info
-https://www.w3schools.com/css/
-https://www.w3schools.com/cssref/playdemo.php?filename=playcss_accent-color 
+- https://www.w3schools.com/css/
+- https://www.w3schools.com/cssref/playdemo.php?filename=playcss_accent-color 
 
