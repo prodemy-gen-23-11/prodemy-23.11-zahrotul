@@ -59,6 +59,7 @@ HTML merupakan standar yang digunakan secara luas untuk menampilkan halaman web.
 <a name="inside"></a>
 ## Apa Saja yang Ada di HTML ?
 - [Struktur](#struktur)
+- [Elemen Semantic](#elemen-semantic)
 - [Elemen](#elemen)
 - [Panulisan Text](#penulisan-text)
 - [Tag Link dan Embedding Media](#tag-link-dan-embedding-media)
