@@ -44,7 +44,7 @@ body{
     font-size: x-small;
 }
 
-nav{
+.nav-def{
     position: sticky;
     top: -1;
     left: 0;
@@ -60,24 +60,28 @@ nav{
     align-items: center;
 }
 
-nav > .logo{
+.nav-def > .logo{
     cursor: pointer;
     font-size: medium;
     font-weight: 500;
 }
 
-nav .icons{
+.nav-def .icons{
     display: flex;
     gap: 2vw;
     cursor: pointer;
 }
 
-nav .icons i{
+.nav-def .icons i{
     font-size: small;
 }
 
-nav .icons i:hover{
+.nav-def .icons i:hover{
     color: #C7B39F;
+}
+
+.nav-mobile{
+    display: none;
 }
 
 .content{
@@ -382,10 +386,10 @@ footer{
     .mini-info{
         font-size: small;
     }
-    nav .icons i{
+    .nav-def .icons i{
         font-size: medium;
     }
-    nav .logo{
+    .nav-def .logo{
         font-size: large;
     }
 
@@ -467,14 +471,14 @@ footer{
 
 /* lg */
 @media (min-width: 1024px) {
-    nav{
+    .nav-def{
         padding-top: 1%;
         padding-bottom: 1%;
     }
-    nav .icons i{
+    .nav-def .icons i{
         font-size: large;
     }
-    nav .logo{
+    .nav-def .logo{
         font-size: larger;
     }
 
