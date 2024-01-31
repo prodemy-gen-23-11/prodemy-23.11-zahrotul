@@ -114,7 +114,7 @@
                 </div>
                 <div class="lg:max-w-[40%] flex flex-col space-y-4">
                     <div class="flex flex-col space-y-2">
-                        <div class="text-base md:text-lg">COLOR : OFF WHITE</div>
+                        <div class="text-base md:text-lg">COLOR </div>
                         <div id="colorList" class="flex space-x-2">
                             <div data-preview="../images/product-1.0.webp" class="colorItem w-[37px] h-[37px] md:w-[45px] md:h-[45px] border-solid border-transparent border-[2px] hover:border hover:border-solid  hover:border-gray-500 rounded-[50%] flex items-center justify-center cursor-pointer">
                                 <div class="bg-[#FAF6F3] w-[30px] md:w-[35px] rounded-[50%] border-solid border-[1pt] border-black aspect-square"></div>
@@ -125,7 +125,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col space-y-2">
-                        <div class="text-base md:text-lg">SIZE : L WOMAN</div>
+                        <div class="text-base md:text-lg">SIZE</div>
                         <div id="sizeList" class="flex space-x-2">
                             <div class="sizeItem w-[37px] h-[37px] md:w-[45px] md:h-[45px] border-solid border-[2px] border-transparent hover:border hover:border-solid  hover:border-gray-500 rounded-[50%] flex items-center justify-center cursor-pointer">
                                 <div class="w-[30px] md:w-[35px] leading-[30px] md:leading-[35px] text-sm md:text-base rounded-[50%] border-solid border-[1pt] border-black aspect-square text-center align-center">S</div>
@@ -230,8 +230,8 @@
 
                     // Remove active class from all list items
                     var listItems = imageList.querySelectorAll("li");
-                    listItems.forEach(function(item) {
-                    item.classList.remove("active");
+                        listItems.forEach(function(item) {
+                        item.classList.remove("active");
                     });
 
                     // Add active class to the clicked list item
@@ -277,7 +277,6 @@
             document.addEventListener("DOMContentLoaded", function() {
                 // Get the image divs and preview image element
                 var imageItems = document.querySelectorAll(".sizeItem");
-                var previewImage = document.getElementById("previewImage");
 
                 // Add click event listener to each image div
                 imageItems.forEach(function(item) {
