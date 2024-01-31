@@ -1016,6 +1016,10 @@ video {
   opacity: 0;
 }
 
+.opacity-65 {
+  opacity: 0.65;
+}
+
 .ease-linear {
   transition-timing-function: linear;
 }
@@ -1035,6 +1039,7 @@ video {
 
 #imageList li.active{
   border-color: black !important;
+  opacity: 1;
 }
 
 #colorList .colorItem.active{
@@ -1089,6 +1094,10 @@ video {
 .hover\:text-black:hover {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.hover\:opacity-100:hover {
+  opacity: 1;
 }
 
 @media (min-width: 768px) {

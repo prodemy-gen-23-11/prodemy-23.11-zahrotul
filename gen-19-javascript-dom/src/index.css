@@ -17,6 +17,7 @@
 
 #imageList li.active{
     border-color: black !important;
+    opacity: 1;
 }
 
 #colorList .colorItem.active{
