@@ -6,6 +6,8 @@ Repository for submitting tasks
 - [VsCode](#visual-studio-code)
 - [HTML](#html)
 - [CSS](#css)
+- [Tailwind](#tailwind)
+- [Javascript](#javascript)
 
 <a name="git"></a>
 # GIT
