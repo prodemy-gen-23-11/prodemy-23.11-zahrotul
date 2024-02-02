@@ -8,6 +8,7 @@ Repository for submitting tasks
 - [CSS](#css)
 - [Tailwind](#tailwind)
 - [Javascript](#javascript)
+- [NPM](#npm)
 
 <a name="git"></a>
 # GIT
@@ -674,5 +675,17 @@ API untuk HTML yang merepresentasikan webpage pada dokumen menjadi object
 - https://www.w3schools.com/js/
 - https://www.w3schools.com/js/js_htmldom.asp
 - https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction
+
+# NPM
+pengelola package JavaScript bawaan Node.js. Nodejs adalah sebuah platform untuk mengeksekusi program Javascript di luar browser.
+
+## Inisialisasi dan Instalasi
+`npm init` untuk inisialisasi
+`npm install [nama package]` untuk install package/library
+
+## Export dan Import
+`export [content]`
+`import [content] from [letak]`
+`import [content] from [package]`
 
 
