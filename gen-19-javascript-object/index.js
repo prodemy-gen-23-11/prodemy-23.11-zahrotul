@@ -47,6 +47,9 @@ let char = [
     },
 ];
 
+console.log("Daftar Karakter")
+console.log(char)
+
 rl.question("Mau ganti siapa ? ", function(nama) {
     rl.question("Mau ganti apa ? ", function(ganti) {
         rl.question("Ganti jadi apa ? ", function(jadi) {
@@ -61,6 +64,7 @@ rl.question("Mau ganti siapa ? ", function(nama) {
 });
 
 rl.on("close", function() {
+    console.log("hasil")
     console.log(char)
     console.log("\nBYE BYE !!!");
     process.exit(0);
