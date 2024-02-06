@@ -2,30 +2,31 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Product(props){
+    const {name,image,price,category} = props
     return(
         <div className="product">
             <div className="wrapper">
-                {props.category=="best" && 
+                {category=="best" && 
                     <div className="info-best">
                         Best Seller
                     </div>
                 }
-                {props.category=="autumn" && 
+                {category=="autumn" && 
                     <div className='info'>
                         Autumn
                     </div>
                 }
-                {props.category=="daily" && 
+                {category=="daily" && 
                     <div className="info-daily">
                         Daily
                     </div>
                 }
-                {props.category=="winter" && 
+                {category=="winter" && 
                     <div className="info-winter">
                         Winter
                     </div>
                 }
-                <img src={props.image} alt=""/>
+                <img src={image} alt=""/>
                 <div className="cart">
                     <FontAwesomeIcon icon={faCartShopping} />
                     <i className="fa-solid fa-cart-shopping"></i>
@@ -35,8 +36,8 @@ export default function Product(props){
                 <div className="variant-1"></div>
                 <div className="variant-2"></div>
             </div>
-            <div className="p-name">{props.name}</div>
-            <div className="price">{props.price}</div>
+            <div className="p-name">{name}</div>
+            <div className="price">{price}</div>
         </div>
     )
 }
