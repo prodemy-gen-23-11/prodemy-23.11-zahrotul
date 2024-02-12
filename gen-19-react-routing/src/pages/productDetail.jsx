@@ -1,5 +1,7 @@
 import { useState } from "react";
-import "./App.css";
+import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import "./app.css";
 import Navbar from "../layouts/navbar";
 import ADS from "../component/ads";
 import Footer from "../layouts/footer";
@@ -7,8 +9,29 @@ import Breadcrumb from "../component/breadcrumb";
 import DetailProduct from "../component/detailProduct";
 import {clsx} from 'clsx';
 import { dataPrev,dataColor,dataSize } from "../data/detailProduct";
+import { dataPrev2,dataColor2,dataSize2 } from "../data/detailProduct2";
 
-function App() {
+export default function ProductDetail() {
+    // const location = useLocation();
+    // console.log("location", location.state.id);
+    const [searchParams] = useSearchParams();
+    console.log(searchParams)
+
+    // const [id, setId] = location.state.id
+    const [dataprev,setDataPrev] = useState()
+    const [datacolor,setDataColor] = useState()
+    const [datasize,setDataSize] = useState()
+    // if(searchParams>1){
+    //     setDataPrev(dataPrev2)
+    //     setDataColor(dataColor2)
+    //     setDataSize(dataSize2)
+    // }
+    // else{
+    //     setDataPrev(dataPrev)
+    //     setDataColor(dataColor)
+    //     setDataSize(dataSize)
+    // }
+
     const [prod, setProd] = useState("../images/product-1.0.webp") 
 
     const [prev, setPrev] = useState(1)
@@ -48,47 +71,47 @@ function App() {
         <div className="m-0">
             <ADS/>
             <Navbar />
-            <div className="max-w-[80%] m-auto mt-[2vh] mb-[5vh]">
+            <div class="max-w-[80%] m-auto mt-[2vh] mb-[5vh]">
                 <Breadcrumb/>
-                <div className="text-xl md:text-3xl mb-6 font-bold">Double pocket knit jacket with long sleeves</div>
-                <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
-                    <div className="lg:max-w-[55%]">
-                        <div className="flex justify-between">
-                            <ul name="" id="imageList" className="flex flex-col gap-2 z-0">
-                                {dataPrev?.map((preview,i)=>(
+                <div class="text-xl md:text-3xl mb-6 font-bold">Double pocket knit jacket with long sleeves</div>
+                <div class="flex flex-col gap-10 lg:flex-row lg:justify-between">
+                    <div class="lg:max-w-[55%]">
+                        <div class="flex justify-between">
+                            <ul name="" id="imageList" class="flex flex-col gap-2 z-0">
+                                {dataprev?.map((preview,i)=>(
                                     <li key={i}>
-                                        <div className={prev==preview.id ? prevAct : prevDef}>
+                                        <div class={prev==preview.id ? prevAct : prevDef}>
                                             <img src={preview.dataPreview} alt="" width="50" height="50"
                                             onClick={()=>handlePrev(preview)}/>
                                         </div>
                                     </li>
                                 ))}
                             </ul>
-                            <figure className="w-[90%] p-0"> 
+                            <figure class="w-[90%] p-0"> 
                                 <img id="previewImage" src={prod} alt=""/>
-                                <figcaption className="my-2 text-sm md:text-base">Model 170cm Wearing size L</figcaption>
+                                <figcaption class="my-2 text-sm md:text-base">Model 170cm Wearing size L</figcaption>
                             </figure>
                         </div>
                         <DetailProduct/>
                     </div>
-                    <div className="lg:max-w-[40%] flex flex-col space-y-4">
-                        <div className="flex flex-col space-y-2">
-                            <div className="text-base md:text-lg capitalize">COLOR : {color}</div>
-                            <div id="colorList" className="flex space-x-2">
-                                {dataColor?.map((col,i)=>(
-                                    <div key={i} className={color == col.name ? clsx(colorAct) : clsx(colorDef)}>
-                                        <button className={clsx(colorBtn, col.colorclassName)}
+                    <div class="lg:max-w-[40%] flex flex-col space-y-4">
+                        <div class="flex flex-col space-y-2">
+                            <div class="text-base md:text-lg capitalize">COLOR : {color}</div>
+                            <div id="colorList" class="flex space-x-2">
+                                {datacolor?.map((col,i)=>(
+                                    <div key={i} class={color == col.name ? clsx(colorAct) : clsx(colorDef)}>
+                                        <button class={clsx(colorBtn, col.colorClass)}
                                         value={col.name} onClick={(e)=>handleColor(e,col.dataPreview)}></button>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                        <div className="flex flex-col space-y-2">
-                            <div className="text-base md:text-lg capitalize">SIZE : {size}</div>
-                            <div id="sizeList" className="flex space-x-2">
-                                {dataSize?.map((datasize,i)=>(
-                                    <div key={i} className={size == datasize ? clsx(sizeAct) : clsx(sizeDef)}>
-                                        <button className="w-[30px] md:w-[35px] leading-[30px] md:leading-[35px] text-sm md:text-base rounded-[50%] border-solid border-[1pt] border-black aspect-square text-center align-center"
+                        <div class="flex flex-col space-y-2">
+                            <div class="text-base md:text-lg capitalize">SIZE : {size}</div>
+                            <div id="sizeList" class="flex space-x-2">
+                                {datasize?.map((datasize,i)=>(
+                                    <div key={i} class={size == datasize ? clsx(sizeAct) : clsx(sizeDef)}>
+                                        <button class="w-[30px] md:w-[35px] leading-[30px] md:leading-[35px] text-sm md:text-base rounded-[50%] border-solid border-[1pt] border-black aspect-square text-center align-center"
                                         value={datasize} onClick={handleSize}>
                                             {datasize}
                                         </button>
@@ -96,15 +119,15 @@ function App() {
                                 ))}
                             </div>
                         </div>
-                        <div className="w-[100%] md:w-[80%] border border-solid rounded-md border-black py-1 md:py-2 text-sm md:text-base text-center cursor-pointer hover:font-bold">SIZE CHART</div>
-                        <div className="text-xl md:text-2xl font-bold">¥2,990</div>
-                        <div className="flex flex-col space-y-2">
-                            <div className="text-base md:text-lg">Quantity</div>
-                            <input className="border border-solid border-grey rounded-md p-2 w-[30%]" type="number" name="" id="" placeholder="1"/>
-                            <div className="text-sm md:text-base">Out of Stock</div>
-                            <div className="text-sm md:text-base">If the selected color size is out of stock, a restock notification is available.</div>
+                        <div class="w-[100%] md:w-[80%] border border-solid rounded-md border-black py-1 md:py-2 text-sm md:text-base text-center cursor-pointer hover:font-bold">SIZE CHART</div>
+                        <div class="text-xl md:text-2xl font-bold">¥2,990</div>
+                        <div class="flex flex-col space-y-2">
+                            <div class="text-base md:text-lg">Quantity</div>
+                            <input class="border border-solid border-grey rounded-md p-2 w-[30%]" type="number" name="" id="" placeholder="1"/>
+                            <div class="text-sm md:text-base">Out of Stock</div>
+                            <div class="text-sm md:text-base">If the selected color size is out of stock, a restock notification is available.</div>
                         </div>
-                        <button className="bg-black p-2 md:p-4 text-white rounded-lg cursor-pointer w-[100%] hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-black text-base md:text-lg font-bold">ADD TO CART</button>
+                        <button class="bg-black p-2 md:p-4 text-white rounded-lg cursor-pointer w-[100%] hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-black text-base md:text-lg font-bold">ADD TO CART</button>
                     </div>
                 </div>
             </div>
@@ -113,4 +136,3 @@ function App() {
     );
 }
 
-export default App;
