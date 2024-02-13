@@ -14,18 +14,18 @@ function ProductList() {
 
     const handleProduct=(id)=>{
         console.log(id)
-        // navigate(`/productdetail/${id}`, {
-        //         state: {
-        //             id: id,
-        //         },
-        //     }
-        // )
-        navigate({
-            pathname: `/productdetail/${id}`,
-            search: createSearchParams({
-                id: id,
-            }).toString(),
-        });
+        navigate(`/productdetail/${id}`, {
+                state: {
+                    id: id,
+                },
+            }
+        )
+        // navigate({
+        //     pathname: `/productdetail/${id}`,
+        //     search: createSearchParams({
+        //         id: id,
+        //     }).toString(),
+        // });
     }
 
     return (
@@ -62,7 +62,7 @@ function ProductList() {
                 </div>
                 <div className="products max-w-100 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[10px] justify-between">
                 {products.map((products) => (
-                    <div onClick={() => handleProduct(products.id)}>
+                    <div key={products.id} onClick={() => handleProduct(products.id)}>
                         <Product
                         key={products.id}
                         name={products.name}

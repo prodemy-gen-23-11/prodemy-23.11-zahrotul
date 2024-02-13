@@ -1,4 +1,4 @@
-const dataPrev2 = [
+const dataPrev = [
     {
         id: 1,
         dataPreview: "../images/product-2.0.webp",
@@ -26,9 +26,9 @@ const dataPrev2 = [
     }
 ]
 
-const dataSize2 = ["S", "M", "L", "XL"]
+const dataSize = ["S", "M", "L", "XL"]
 
-const dataColor2 = [
+const dataColor = [
     {
         name: "cream",
         colorClass : "bg-[#FAF6F3]",
@@ -41,4 +41,4 @@ const dataColor2 = [
     }
 ]
 
-export {dataPrev2, dataColor2, dataSize2}
+export {dataPrev, dataColor, dataSize}

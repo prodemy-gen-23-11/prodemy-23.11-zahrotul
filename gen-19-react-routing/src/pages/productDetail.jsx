@@ -8,31 +8,19 @@ import Footer from "../layouts/footer";
 import Breadcrumb from "../component/breadcrumb";
 import DetailProduct from "../component/detailProduct";
 import {clsx} from 'clsx';
-import { dataPrev,dataColor,dataSize } from "../data/detailProduct";
-import { dataPrev2,dataColor2,dataSize2 } from "../data/detailProduct2";
+import { data } from "../data/detailProduct";
+import { products } from "../data/products";
+// import { dataPrev2,dataColor2,dataSize2 } from "../data/detailProduct2";
 
 export default function ProductDetail() {
-    // const location = useLocation();
-    // console.log("location", location.state.id);
-    const [searchParams] = useSearchParams();
-    console.log(searchParams)
+    const location = useLocation();
+    console.log("location", location.state.id);
+    // const [searchParams] = useSearchParams();
+    // console.log(searchParams)
+    const param = location.state.id-1
+    console.log(param," ",typeof(param))
 
-    // const [id, setId] = location.state.id
-    const [dataprev,setDataPrev] = useState()
-    const [datacolor,setDataColor] = useState()
-    const [datasize,setDataSize] = useState()
-    // if(searchParams>1){
-    //     setDataPrev(dataPrev2)
-    //     setDataColor(dataColor2)
-    //     setDataSize(dataSize2)
-    // }
-    // else{
-    //     setDataPrev(dataPrev)
-    //     setDataColor(dataColor)
-    //     setDataSize(dataSize)
-    // }
-
-    const [prod, setProd] = useState("../images/product-1.0.webp") 
+    const [prod, setProd] = useState(products[param].image) 
 
     const [prev, setPrev] = useState(1)
     const prevDef = "opacity-65 hover:opacity-100 border border-solid border-transparent hover:border-solid hover:border-gray-500 w-[60px] h-[60px] flex justify-center items-center cursor-pointer"
@@ -58,10 +46,10 @@ export default function ProductDetail() {
     const handleColor=(e, val)=>{
         setColor(e.target.value)
         setProd(val)
-        for (var key in dataPrev) {
-            if(e.target.value==dataPrev[key].color){
-                setPrev(dataPrev[key].id)
-                setProd(dataPrev[key].dataPreview)
+        for (var key in data[param].dataPrev) {
+            if(e.target.value==data[param].dataPrev[key].color){
+                setPrev(data[param].dataPrev[key].id)
+                setProd(data[param].dataPrev[key].dataPreview)
                 break
             }
         }
@@ -71,47 +59,47 @@ export default function ProductDetail() {
         <div className="m-0">
             <ADS/>
             <Navbar />
-            <div class="max-w-[80%] m-auto mt-[2vh] mb-[5vh]">
+            <div className="max-w-[80%] m-auto mt-[2vh] mb-[5vh]">
                 <Breadcrumb/>
-                <div class="text-xl md:text-3xl mb-6 font-bold">Double pocket knit jacket with long sleeves</div>
-                <div class="flex flex-col gap-10 lg:flex-row lg:justify-between">
-                    <div class="lg:max-w-[55%]">
-                        <div class="flex justify-between">
-                            <ul name="" id="imageList" class="flex flex-col gap-2 z-0">
-                                {dataprev?.map((preview,i)=>(
+                <div className="text-xl md:text-3xl mb-6 font-bold">{products[param].name}</div>
+                <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
+                    <div className="lg:max-w-[55%]">
+                        <div className="flex justify-between">
+                            <ul name="" id="imageList" className="flex flex-col gap-2 z-0 max-h-96 overflow-y-scroll">
+                                {data[param].dataPrev?.map((preview,i)=>(
                                     <li key={i}>
-                                        <div class={prev==preview.id ? prevAct : prevDef}>
+                                        <div className={prev==preview.id ? prevAct : prevDef}>
                                             <img src={preview.dataPreview} alt="" width="50" height="50"
                                             onClick={()=>handlePrev(preview)}/>
                                         </div>
                                     </li>
                                 ))}
                             </ul>
-                            <figure class="w-[90%] p-0"> 
+                            <figure className="w-[90%] p-0"> 
                                 <img id="previewImage" src={prod} alt=""/>
-                                <figcaption class="my-2 text-sm md:text-base">Model 170cm Wearing size L</figcaption>
+                                <figcaption className="my-2 text-sm md:text-base">Model 170cm Wearing size L</figcaption>
                             </figure>
                         </div>
                         <DetailProduct/>
                     </div>
-                    <div class="lg:max-w-[40%] flex flex-col space-y-4">
-                        <div class="flex flex-col space-y-2">
-                            <div class="text-base md:text-lg capitalize">COLOR : {color}</div>
-                            <div id="colorList" class="flex space-x-2">
-                                {datacolor?.map((col,i)=>(
-                                    <div key={i} class={color == col.name ? clsx(colorAct) : clsx(colorDef)}>
-                                        <button class={clsx(colorBtn, col.colorClass)}
+                    <div className="lg:max-w-[40%] flex flex-col space-y-4">
+                        <div className="flex flex-col space-y-2">
+                            <div className="text-base md:text-lg capitalize">COLOR : {color}</div>
+                            <div id="colorList" className="flex space-x-2">
+                                {data[param].dataColor?.map((col,i)=>(
+                                    <div key={i} className={color == col.name ? clsx(colorAct) : clsx(colorDef)}>
+                                        <button className={clsx(colorBtn, col.colorClass)}
                                         value={col.name} onClick={(e)=>handleColor(e,col.dataPreview)}></button>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                        <div class="flex flex-col space-y-2">
-                            <div class="text-base md:text-lg capitalize">SIZE : {size}</div>
-                            <div id="sizeList" class="flex space-x-2">
-                                {datasize?.map((datasize,i)=>(
-                                    <div key={i} class={size == datasize ? clsx(sizeAct) : clsx(sizeDef)}>
-                                        <button class="w-[30px] md:w-[35px] leading-[30px] md:leading-[35px] text-sm md:text-base rounded-[50%] border-solid border-[1pt] border-black aspect-square text-center align-center"
+                        <div className="flex flex-col space-y-2">
+                            <div className="text-base md:text-lg capitalize">SIZE : {size}</div>
+                            <div id="sizeList" className="flex space-x-2">
+                                {data[param].dataSize?.map((datasize,i)=>(
+                                    <div key={i} className={size == datasize ? clsx(sizeAct) : clsx(sizeDef)}>
+                                        <button className="w-[30px] md:w-[35px] leading-[30px] md:leading-[35px] text-sm md:text-base rounded-[50%] border-solid border-[1pt] border-black aspect-square text-center align-center"
                                         value={datasize} onClick={handleSize}>
                                             {datasize}
                                         </button>
@@ -119,15 +107,15 @@ export default function ProductDetail() {
                                 ))}
                             </div>
                         </div>
-                        <div class="w-[100%] md:w-[80%] border border-solid rounded-md border-black py-1 md:py-2 text-sm md:text-base text-center cursor-pointer hover:font-bold">SIZE CHART</div>
-                        <div class="text-xl md:text-2xl font-bold">¥2,990</div>
-                        <div class="flex flex-col space-y-2">
-                            <div class="text-base md:text-lg">Quantity</div>
-                            <input class="border border-solid border-grey rounded-md p-2 w-[30%]" type="number" name="" id="" placeholder="1"/>
-                            <div class="text-sm md:text-base">Out of Stock</div>
-                            <div class="text-sm md:text-base">If the selected color size is out of stock, a restock notification is available.</div>
+                        <div className="w-[100%] md:w-[80%] border border-solid rounded-md border-black py-1 md:py-2 text-sm md:text-base text-center cursor-pointer hover:font-bold">SIZE CHART</div>
+                        <div className="text-xl md:text-2xl font-bold">{products[param].price}</div>
+                        <div className="flex flex-col space-y-2">
+                            <div className="text-base md:text-lg">Quantity</div>
+                            <input className="border border-solid border-grey rounded-md p-2 w-[30%]" type="number" name="" id="" placeholder="1"/>
+                            <div className="text-sm md:text-base">Out of Stock</div>
+                            <div className="text-sm md:text-base">If the selected color size is out of stock, a restock notification is available.</div>
                         </div>
-                        <button class="bg-black p-2 md:p-4 text-white rounded-lg cursor-pointer w-[100%] hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-black text-base md:text-lg font-bold">ADD TO CART</button>
+                        <button className="bg-black p-2 md:p-4 text-white rounded-lg cursor-pointer w-[100%] hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-black text-base md:text-lg font-bold">ADD TO CART</button>
                     </div>
                 </div>
             </div>
