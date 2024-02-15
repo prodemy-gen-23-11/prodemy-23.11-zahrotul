@@ -11,6 +11,10 @@ export default function Navbar(){
     const navigate = useNavigate()
     const handleClick = () =>{
         navigate("/productlist")
+        window.scrollTo({
+            top: 0, 
+            behavior: 'smooth'
+        });
     }
     return(
         <nav className="sticky top-0 px-[5%] h-12 md:h-auto md:py-[2%] lg:py-[1%] bg-[#eee7e1] z-[100]">
