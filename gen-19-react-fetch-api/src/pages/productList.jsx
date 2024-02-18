@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./app.css";
 import Product from "../component/product";
@@ -14,6 +14,8 @@ import { createSearchParams } from "react-router-dom";
 
 function ProductList() {
     const navigate = useNavigate()
+    const [products, setProducts] = useState()
+    const [filter, setFilter] = useState("all")
 
     const handleProduct=(id)=>{
         console.log(id)
@@ -42,8 +44,33 @@ function ProductList() {
 
     if (error) return alert(JSON.stringify(erroroccured));
 
+    const handleFilter = e =>{
+        setFilter(e.target.value)
+    }
+    
+    useEffect(() => {
+        if (data) {
+            if(filter!="all") {
+                const temp = data.filter((product) => product.category == filter);
+                setProducts(temp)
+            }
+            else setProducts(data)
+        }
+    }, [filter]);
+
+    if (!data) {
+        return <HashLoader />;
+    }
+
+    if (!products && data) {
+        console.log(data)
+
+        setProducts(data); 
+    }
+
     return (
         <div className="m-0">
+            {console.log(data)}
             <div className="mini-info py-[2vh] text-center text-xs sm:text-sm">
                 ADS Kindly Visit Our Instagram or Carousell @derola.stuff
             </div>
@@ -53,30 +80,30 @@ function ProductList() {
                 <Promote />
                 <div className="filter-wrapper w-100 overflow-auto ">
                     <div className="filter w-max flex align-middle items-center">
-                        <div className="category w-fit min-w-[25px] lg:min-w-[60px] p-[6px] sm:p-[8px] lg:p-[10px] rounded-md font-medium text-xs sm:text-sm lg:text-base text-center bg-second cursor-pointer transition-all duration-300 ease-in-out hover:bg-first hover:transition-all hover:duration-300 hover:ease-in-out ">
+                        <button value="all" onClick={handleFilter} className="category w-fit min-w-[25px] lg:min-w-[60px] p-[6px] sm:p-[8px] lg:p-[10px] rounded-md font-medium text-xs sm:text-sm lg:text-base text-center bg-second cursor-pointer transition-all duration-300 ease-in-out hover:bg-first hover:transition-all hover:duration-300 hover:ease-in-out ">
                             All
-                        </div>
+                        </button>
                         <hr size="8" color="#C7B39F" className="w-[5vw] lg:w-[3vw] m-0 border-4" />
-                        <div className="category w-fit min-w-[25px] lg:min-w-[60px] p-[6px] sm:p-[8px] lg:p-[10px] rounded-md font-medium text-xs sm:text-sm lg:text-base text-center bg-second cursor-pointer transition-all duration-300 ease-in-out hover:bg-first hover:transition-all hover:duration-300 hover:ease-in-out ">
+                        <button value="autumn" onClick={handleFilter} className="category w-fit min-w-[25px] lg:min-w-[60px] p-[6px] sm:p-[8px] lg:p-[10px] rounded-md font-medium text-xs sm:text-sm lg:text-base text-center bg-second cursor-pointer transition-all duration-300 ease-in-out hover:bg-first hover:transition-all hover:duration-300 hover:ease-in-out ">
                             Autumn
-                        </div>
-                        <hr size="8" color="#C7B39F" className="w-[5vw] lg:w-[3vw] m-0" />
-                        <div className="category w-fit min-w-[25px] lg:min-w-[60px] p-[6px] sm:p-[8px] lg:p-[10px] rounded-md font-medium text-xs sm:text-sm lg:text-base text-center bg-second cursor-pointer transition-all duration-300 ease-in-out hover:bg-first hover:transition-all hover:duration-300 hover:ease-in-out ">
+                        </button>
+                        <hr size="8" color="#C7B39F" className="w-[5vw] lg:w-[3vw] m-0 border-4" />
+                        <button value="winter" onClick={handleFilter} className="category w-fit min-w-[25px] lg:min-w-[60px] p-[6px] sm:p-[8px] lg:p-[10px] rounded-md font-medium text-xs sm:text-sm lg:text-base text-center bg-second cursor-pointer transition-all duration-300 ease-in-out hover:bg-first hover:transition-all hover:duration-300 hover:ease-in-out ">
                             Winter
-                        </div>
-                        <hr size="8" color="#C7B39F" className="w-[5vw] lg:w-[3vw] m-0" />
-                        <div className="category w-fit min-w-[25px] lg:min-w-[60px] p-[6px] sm:p-[8px] lg:p-[10px] rounded-md font-medium text-xs sm:text-sm lg:text-base text-center bg-second cursor-pointer transition-all duration-300 ease-in-out hover:bg-first hover:transition-all hover:duration-300 hover:ease-in-out ">
+                        </button>
+                        <hr size="8" color="#C7B39F" className="w-[5vw] lg:w-[3vw] m-0 border-4" />
+                        <button value="daily" onClick={handleFilter} className="category w-fit min-w-[25px] lg:min-w-[60px] p-[6px] sm:p-[8px] lg:p-[10px] rounded-md font-medium text-xs sm:text-sm lg:text-base text-center bg-second cursor-pointer transition-all duration-300 ease-in-out hover:bg-first hover:transition-all hover:duration-300 hover:ease-in-out ">
                             Daily
-                        </div>
-                        <hr size="8" color="#C7B39F" className="w-[5vw] lg:w-[3vw] m-0" />
-                        <div className="category w-fit min-w-[25px] lg:min-w-[60px] p-[6px] sm:p-[8px] lg:p-[10px] rounded-md font-medium text-xs sm:text-sm lg:text-base text-center bg-second cursor-pointer transition-all duration-300 ease-in-out hover:bg-first hover:transition-all hover:duration-300 hover:ease-in-out ">
+                        </button>
+                        <hr size="8" color="#C7B39F" className="w-[5vw] lg:w-[3vw] m-0 border-4" />
+                        <button value="best seller" onClick={handleFilter} className="category w-fit min-w-[25px] lg:min-w-[60px] p-[6px] sm:p-[8px] lg:p-[10px] rounded-md font-medium text-xs sm:text-sm lg:text-base text-center bg-second cursor-pointer transition-all duration-300 ease-in-out hover:bg-first hover:transition-all hover:duration-300 hover:ease-in-out ">
                             Best Seller
-                        </div>
+                        </button>
                     </div>
                 </div>
                 {isLoading ? <HashLoader/> : 
                     <div className="products max-w-100 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[10px] justify-between">
-                    {data?.map((products) => (
+                    {products?.map((products) => (
                         <div key={products.id} onClick={() => handleProduct(products.id)}>
                             <Product
                             key={products.id}

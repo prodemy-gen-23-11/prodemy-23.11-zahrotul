@@ -10,6 +10,18 @@ const getAllRecipes = async() => {
 
 getAllRecipes()
 
+const getRecipe = async(id) => {
+    try{
+        const response = await axios.get(`https://dummyjson.com/recipes/${id}`)
+        console.log("Get 1")
+        console.log(response.data.recipes)
+    }catch(error){
+        console.log(error)
+    }
+}
+
+getRecipe(2)
+
 
 const getChocolateRecipes = async() => {
     try{
