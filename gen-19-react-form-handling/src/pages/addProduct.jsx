@@ -6,7 +6,7 @@ import * as yup from "yup";
 function CheckoutPage() {
     const schema = yup.object().shape({
         name: yup.string().required("Field Name is required"),
-        image: yup.string().required("Image is required"),
+        images: yup.array().of(yup.string().url().required('Image link is required')).min(1, 'At least one image link is required'),
         price: yup.number().positive().required("Price is required"),
         category: yup
             .string()
@@ -22,8 +22,10 @@ function CheckoutPage() {
     });
 
     const defaultValues = {
-        price: 0,
-        image: [],
+        name: '',
+        images: [''],
+        price: '',
+        category: '',
         colors: [{ colorName: '', hexCode: '' }],
         sizes: [],
     };
@@ -39,9 +41,14 @@ function CheckoutPage() {
         defaultValues,
     });
 
-    const { fields, append, remove } = useFieldArray({
+    const { fields:color, append:appendColor, remove:removeColor } = useFieldArray({
         control,
         name: 'colors',
+    });
+
+    const { fields:image, append:appendImage, remove:removeImage } = useFieldArray({
+        control,
+        name: 'image',
     });
 
     const onSubmitForm = (data) => {
@@ -75,7 +82,7 @@ function CheckoutPage() {
                     <label htmlFor="name">Name</label>
                     <input
                         placeholder="Name"
-                        className="w-full rounded-lg border-[1px] border-gray-200 p-4 pe-12 text-sm focus:outline-orange-200"
+                        className="w-full rounded-lg border-[1px] border-gray-400 p-4 pe-12 text-sm focus:outline-black"
                         {...register("name")}
                         id="name"
                     />
@@ -83,21 +90,29 @@ function CheckoutPage() {
                 </div>
 
                 <div>
-                    <label htmlFor="image">Image</label>
-                    <input
-                        placeholder="Image Link"
-                        className="w-full rounded-lg border-[1px] border-gray-200 p-4 pe-12 text-sm focus:outline-orange-200"
-                        {...register("image")}
-                        id="image"
-                    />
-                    <p className="error text-red-500">{errors.image?.message}</p>
+                    <p>Image</p>
+                    {image.map((image, index) => (
+                        <div key={image.id} className="flex gap-4 mb-2 items-center">
+                            <input
+                                className="rounded-lg border-[1px] border-gray-400 p-4 w-[40%] text-sm focus:outline-black"
+                                {...register(`images.${index}`)}
+                                placeholder="Image Link"
+                            />
+                            <button className="rounded-lg bg-red-400 p-2 text-white self-center hover:bg-red-600" type="button" onClick={() => removeImage(index)}>
+                                Remove
+                            </button>
+                            <p className="error text-red-500">{errors.images && errors.images[index]?.message}</p>
+                        </div>
+                    ))}
+                    <button type="button" className="rounded-lg bg-first hover:bg-yellow-600 p-2 mt-4 text-white self-center" onClick={() => appendImage({ colorName: '', hexCode: '' })}>Add Image</button>
+                    <p className="error text-red-500">{errors.images?.message}</p>
                 </div>
 
                 <div>
                     <label htmlFor="category">Category</label>
                     <select
                         placeholder="Category"
-                        className="p-4 pe-12 w-full rounded-lg border-[1px] border-gray-300 text-gray-700 sm:text-sm"
+                        className="p-4 pe-12 w-full rounded-lg border-[1px] border-gray-400 text-gray-700 sm:text-sm"
                         {...register("category")}
                         id="category"
                     >
@@ -114,7 +129,7 @@ function CheckoutPage() {
                     <label htmlFor="price">Price</label>
                     <input
                         placeholder="Price"
-                        className="w-full rounded-lg border-[1px] border-gray-200 p-4 pe-12 text-sm focus:outline-orange-200"
+                        className="w-full rounded-lg border-[1px] border-gray-400 p-4 pe-12 text-sm focus:outline-black"
                         {...register("price")}
                         id="price"
                     />
@@ -123,19 +138,19 @@ function CheckoutPage() {
 
                 <div>
                     <p>Color</p>
-                    {fields.map((color, index) => (
+                    {color.map((color, index) => (
                         <div key={color.id} className="flex gap-4 mb-2">
                             <input
-                                className="rounded-lg border-[1px] border-gray-200 p-4 pe-12 text-sm focus:outline-orange-200"
+                                className="rounded-lg border-[1px] border-gray-400 p-4 pe-12 text-sm focus:outline-black"
                                 {...register(`colors.${index}.colorName`)}
                                 placeholder="Color Name"
                             />
                             <input
-                                className="rounded-lg border-[1px] border-gray-200 p-4 pe-12 text-sm focus:outline-orange-200"
+                                className="rounded-lg border-[1px] border-gray-400 p-4 pe-12 text-sm focus:outline-black"
                                 {...register(`colors.${index}.hexCode`)}
                                 placeholder="Hex Code"
                             />
-                            <button className="rounded-lg bg-red-300 p-2 text-white self-center" type="button" onClick={() => remove(index)}>
+                            <button className="rounded-lg bg-red-400 p-2 text-white self-center hover:bg-red-600" type="button" onClick={() => removeColor(index)}>
                                 Remove
                             </button>
                             {errors.colors && errors.colors[index] && (
@@ -150,7 +165,7 @@ function CheckoutPage() {
                             )}
                         </div>
                     ))}
-                    <button type="button" className="rounded-lg bg-first p-2 mt-4 text-white self-center" onClick={() => append({ colorName: '', hexCode: '' })}>Add Color</button>
+                    <button type="button" className="rounded-lg bg-first p-2 mt-4 hover:bg-yellow-600 text-white self-center" onClick={() => appendColor({ colorName: '', hexCode: '' })}>Add Color</button>
                 </div>
 
                 <div>
@@ -180,14 +195,14 @@ function CheckoutPage() {
                     <label htmlFor="desc">Description</label>
                     <textarea
                         placeholder="Description"
-                        className="w-full rounded-lg border-[1px] border-gray-200 p-4 pe-12 text-sm focus:outline-orange-200"
+                        className="w-full rounded-lg border-[1px] border-gray-400 p-4 pe-12 text-sm focus:outline-black"
                         {...register("desc")}
                         id="desc"
                     />
                 </div>
 
                 <button
-                    className="rounded-lg bg-first p-2 text-white self-center w-full"
+                    className="mt-4 rounded-lg bg-first p-3 text-xl font-bold hover:bg-yellow-600 text-white self-center w-full"
                     type="submit"
                     >
                     Submit
