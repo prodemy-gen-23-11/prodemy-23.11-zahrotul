@@ -85,7 +85,7 @@ function ProductList() {
             </div>
             <Navbar />
             <div className="content z-0 my-[4vh] max-w-[80%] m-auto flex flex-col gap-[4vh] sm:gap-[3vh] sm:my-[3vh] ">
-                <button className="p-4 text-lg font-semibold bg-second rounded-lg text-first hover:text-third hover:bg-first w-fit">Add Product</button>
+                <button onClick={handleAdd} className="p-4 text-lg font-semibold bg-second rounded-lg text-first hover:text-third hover:bg-first w-fit">Add Product</button>
                 {isLoading ? <HashLoader/> : 
                     <div className="products">
                         <table id="example" className="table table-striped table-bordered pb-5 pt-2 !w-[100%]">
