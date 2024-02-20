@@ -67,12 +67,6 @@ function ProductList() {
         return <HashLoader />;
     }
 
-    if (!products && data) {
-        console.log(data)
-
-        setProducts(data); 
-    }
-
     const handleAdd = ()=>{
         navigate("/addproduct")
     }
@@ -91,15 +85,15 @@ function ProductList() {
                         <table id="example" className="table table-striped table-bordered pb-5 pt-2 !w-[100%]">
                             <thead>
                                 <tr>
-                                    <th scope="col" className="fw-semibold text-center bg-yellow-400" >Name</th>
-                                    <th scope="col" className="fw-semibold text-center bg-yellow-400" >Image</th>
-                                    <th scope="col" className="fw-semibold text-center bg-yellow-400" >Price</th>
-                                    <th scope="col" className="fw-semibold text-center bg-yellow-400" >Category</th>
-                                    <th scope="col" className="fw-semibold text-center bg-yellow-400">Aksi</th>
+                                    <th scope="col" className="fw-semibold text-center bg-first" >Name</th>
+                                    <th scope="col" className="fw-semibold text-center bg-first" >Image</th>
+                                    <th scope="col" className="fw-semibold text-center bg-first" >Price</th>
+                                    <th scope="col" className="fw-semibold text-center bg-first" >Category</th>
+                                    <th scope="col" className="fw-semibold text-center bg-first">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody className="text-center border border-solid border-t-first">
-                                {products?.map((prod)=>(
+                                {data?.map((prod)=>(
                                     <tr key={prod.id}>
                                         <td>{prod.name}</td>
                                         <td><img src={prod.image} alt="" className="max-w-[5vw] m-auto"/></td>
@@ -109,9 +103,6 @@ function ProductList() {
                                             <div className="flex font-semibold justify-center gap-3">
                                                 <div id="editbtn" className="flex flex-row align-middle gap-2 head cursor-pointer">
                                                     <p className="m-0 p-0">Edit</p>
-                                                </div>
-                                                <div id="detailbtn" className="flex flex-row align-middle gap-2 head cursor-pointer">
-                                                    <p className="m-0 p-0">Detail</p>
                                                 </div>
                                                 <div data-bs-toggle="modal" data-bs-target="#myModal"
                                                     className="flex flex-row align-middle gap-2 head cursor-pointer">

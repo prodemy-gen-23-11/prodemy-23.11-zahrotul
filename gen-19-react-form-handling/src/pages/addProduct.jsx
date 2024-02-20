@@ -2,6 +2,7 @@ import axios from "axios";
 import { useFieldArray, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useState } from "react";
 
 function CheckoutPage() {
     const schema = yup.object().shape({
@@ -21,14 +22,14 @@ function CheckoutPage() {
         sizes: yup.array().of(yup.string()).min(1).required('At least one size is required'),
     });
 
-    const defaultValues = {
+    const [defaultValues, setDefaultVal] = useState({
         name: '',
         images: [''],
         price: '',
         category: '',
         colors: [{ colorName: '', hexCode: '' }],
         sizes: [],
-    };
+    });
 
     const {
         register,
