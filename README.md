@@ -9,6 +9,7 @@ Repository for submitting tasks
 - [Tailwind](#tailwind)
 - [Javascript](#javascript)
 - [NPM](#npm)
+- [React](#react)
 
 <a name="git"></a>
 # GIT
@@ -688,4 +689,474 @@ pengelola package JavaScript bawaan Node.js. Nodejs adalah sebuah platform untuk
 `import [content] from [letak]`
 `import [content] from [package]`
 
+<a name="git"></a>
+# React
+- [Mengenal React](#mengenal-react)
+- [Kelebihan React](#kelebihan-react)
+- [DOM dan VDOM](#dom-dan-vdom)
+- [Instalasi React](#instalasi-react)
+- [React Component](#react-component)
+- [React Lifecycle](#react=lifecycle)
+- [More About Rendering](#more-about-rendering)
+- [State & Event](#state--event)
 
+## Mengenal React
+Library javascript untuk membuat UI yang interaktif dan cepat baik pada web maupun mobile.
+
+## Kelebihan React
+1. React bersifat deklaratif, yakni berfokus kepada apa tujuannya.
+2. React berasis kepada komponen, setiap komponen memiliki tugas yang spesifik masing-masing.
+3. React merupakan library yang populer dan konsep penggunaannya mirip dengan ios dan android sehingga layak untuk dipelajari.
+
+## DOM dan VDOM
+Manipulasi dom merupakan kunci dari web yg modern dan interaktif. Namun, manipulasi DOM secara manual memiliki kekurangan seperti berikut : 
+1. Manipulasi dom manual dapat membuat kode berantakan
+2. Sulit mengigat DOM state sebelumnya
+3. Jauh lebih lambat daripada operasi JS pada umumya
+Maka dari itu, digunakan VDOM yang merupakan representasi dari UI yang berbentuk Javascript Object yang tersimpan di dalam memori.
+
+## Instalasi React
+- React Default `npx create-react-app my-app`
+- React Vite (Suatu build tools untuk membuat aplikasi front-end dengan cepat dan efisien) `npm create vite@latest my-react-app -- --template react`
+
+## JSX : Javascript XML
+Ciri-ciri JSX
+1. HTML dan Javascript berada dalam satu file
+2. HTML code harus diwrap dalam satu element.
+3. Elemen HTML wajib memakai closing tag. contoh `<img src="" />`
+4. Menggunakan atribut className
+
+## Conditional & Array Usage
+- If else hanya dapat digunakan di luar render
+- Pada saat render dapat menggunakan ternary operator ( condition ? true : false) atau logical operator (condition && component) 
+- Ketika fetch data, wajib menggunakan key untuk atribut komponen yang berulang
+
+## Javascript XML
+JSX merupakan ekstensi dalam javascript dengan dasar fakta bahwa logika rendering terikat dengan logic dasi UI.
+
+## React Component
+Komponen react merupakan bagian kode yang digunakan untuk menentukan suatu tampilan, behavior, ataupun state dalam UI.
+Dalam satu page website dapat dibagi menjadi dalam beberapa komponen, misalnya ada header, footer, title, dan description.
+Component dapat diterapkan dengan fungsi maupun class. PAssing value antar komponen dapat dilakukan menggunakan props dan callback.
+
+## React Lifecycle
+- render() = merupakan lifecycle method yang digunakan di seluruh class react karena render() merupakan metode yang diperlukan dalam komponen class pada react.
+- componentDidMount() = Dipanggil ketika komponen sudah dirender untuk pertama kali
+- componentDidUpdate() = Dipanggil ketika terjadi update baik di props maupun state
+- componentWillUnmount() = Dipanggil ketika komponen akan dihancurkan
+
+Pada functional component, kita bisa menggunakan useEffect() untuk menambahkan side effect.
+Side effect adalah function yang dieksekusi setelah render.
+
+## More About Rendering
+### Render Bersyarat
+Dengan ini, kita dapat merender sebagian kode berdasarkan state. Penggunaannya biasanya menggunakan if else, ternary operator, dll. Kita juga dapat mencegah komponen untuk dirender dengan mengembalikan nilai null.
+Contoh :
+```jsx
+export default function MainPage({lists}){
+    return(
+        <>
+            {lists.map((list)=> <TodoList key={list.id} list={list}/>)}
+        </>
+    );
+} 
+```
+### Render List
+Kita dapat merender item pada setiap list dengan menggunakan tanda kurung kurawal {}. Penerapannya adalah dengan menggunakan map.
+Contoh  : 
+```jsx
+export default function TodoList({list}){
+    const isCompleted  = list.completed;
+    return(
+        <div className="task">{
+            isCompleted ? 
+            <s>{list.title}</s> : {list.title}
+        }
+        </div>
+    )
+}
+```
+## State & Event
+- [Apa Itu State?](#apa-itu-state?)
+- [Statefull VS Stateless](#statefull-vs-stateless)
+- [Event Handling](#event-handling)
+
+### Apa Itu State?
+State merupakan suatu data pada sebuah komponen yang bersifat private sehingga tidak bisa diakses pada komponen lainnya. Modifikasi state dapat menggunakan `setState`. Setiap terjadi modifikasi, komponne akan dirender ulang. `const [state, setState] = useState('');`
+
+### Statefull VS Stateless
+Statefull component adalah komponen yang memiliki state, sedangkan stateless component tidak memiliki state.
+Statefull component digunakan saat ada interaksi data dalam suatu komponen dimana akan ada data yang dapat dimodifikasi pada komponen tersebut, sedangkan stateless component tidak menerapkan interaksi data yang tujuannya memang untuk visualisasi. 
+
+### Event Handling
+Event handling akan terjadi ketika pengguna memberikan aksi pada suatu komponen. Adapun contoh dari event handling adalah sebagai berikut : 
+- Clipboard Events = ketika promise terpenuhi
+- Form Events = onChange, onSubmit
+- Mouse Events = onClick, onDoubleClick, onMouseOver
+- GenericEvents = onError, onLoad 
+
+## Routing
+### React Router ? 
+React Router adalah sebuah library yang digunakan dalam aplikasi React untuk membuat routing dan navigasi antar halaman. 
+Dapat diinstall menggunakan command `npm install react-router-dom`
+
+### Konfigurasi Route
+#### Menggunakan Object
+```jsx
+const router = createBrowserRouter([
+  {
+    path : "/home",
+    element: <Home/>
+  },
+  {
+    path: "/detail",
+    element: <Detail/>
+  }
+])
+```
+
+setelah itu, objek2 di atas dimasukkan ke RouterProvider di App
+```jsx
+function App(){
+  return(
+    <>
+      <RouterProvider router={router}/>
+    </>
+  )
+}
+```
+#### Menggunakan JSX
+Pada App 
+```jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import { BrowserRouter } from "react-router-dom";
+import "./index.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
+```
+
+```jsx
+import { Route, Routes } from "react-router-dom";
+import Layout from "./layouts/Layout";
+import CharacterPage from "./pages/CharacterPage";
+import LandingPage from "./pages/LandingPage";
+
+function App() {
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<LandingPage />}/>
+        <Route path="/characters" element={<CharacterPage />} />
+      </Routes>
+    </Layout>
+```
+
+### Navigasi Antar Route
+#### Menggunakan Link
+`<Link to="/">Home</Link>`
+#### Menggunakan `useNavigate()`
+```jsx
+const navigate = useNavigate();
+...
+navigate("/home");
+```
+
+### Dynamic Route
+Digunakan ketika membutuhkan 1 route untuk komponen yang beratribut sama.
+- Menambahkan `:id` pada path router `<Route path="/character/:id" element={<DetailPage />} />`
+- Menambahkan `${id}` pada navigasi `navigate("/detail${id}");`
+
+### Redirect
+```jsx
+<Route path="/" element={<Navigate to="/home" />} />
+<Route path="/home" element={<LandingPage />} />
+```
+
+### Passing Data
+#### Menggunakan search param
+Cara kirim 
+```jsx
+const onClickCard = (id, name) => {
+    navigate({
+      pathname: `/character/${id}`,
+      search: createSearchParams({
+        name: name,
+      }).toString(),
+    });
+  };
+```
+URL : http://localhost:5173/character/1?name=Pikachu
+
+Cara Ambil
+```jsx
+ const [searchParams] = useSearchParams();
+ console.log(searchParams);
+```
+#### Menggunakan state
+Cara kirim
+```jsx
+  navigate(`/character/${id}`, {
+      state: {
+        name: name,
+      },
+    });
+```
+
+Cara Ambil
+```jsx
+const location = useLocation();
+console.log("location",location.state.name)
+```
+
+## Javascript Asynchronous
+### Tentang Promise
+Object yang merepresentasikan keberhasilan/kegagalan sebuah event asynchronous.
+- Pending : Dalam keadaan awal, tidak terpenuhi atau tidak ditolak
+- Fulfilled : Artinya terpenuhi atau sukses
+- Rejected : Artinya tidak terpenuhi atau gagal
+Contoh
+```jsx
+axios.get(data).then((res)=>console.log(res)).catch((err)=> console.log(err))
+```
+
+### aync await
+Contoh 
+```jsx
+const get = async() =>{
+  try{
+    const res = await axios.get(data)
+    console.log(res)
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+```
+
+## JSON dan Rest API
+### JSON (Javascript Object Notation)
+Sebuah format yang digunakan untuk menyimpan, membaca, serta menukar informasi dari web server sehingga dapat dibaca oleh para pengguna. 
+Ciri-ciri json:
+1. JSON selalu dibuka dan ditutup dengan tanda {} atau kurung kurawal
+2. Terdiri dari key dan value, dipisahkan oleh titik dua
+3. Key dan value selalu dibuka dan ditutup dengan tanda kutip ganda (“”)
+4. Tiap pasang key dan value dipisah dengan koma
+5. Di key dan value terakhir tidak boleh ada tanda koma
+```json
+{
+  "name" : "jojo",
+  "city" : "surabaya"
+}
+```
+Utility JSON
+- `JSON.parse(txt);` mengubah JSON menjadi object
+- `JSON.stringify(obj);` mengubah object ke JSON
+
+### API (Application Programming Interface)
+Sebagai perantara bagi beberapa aplikasi atau klien dan server, baik pada satu platform yang sama maupun lintas platform, agar bisa saling berkomunikasi.
+#### Rest API
+Representational State Transfer: Ketentuan yang diikuti developer saat mereka membuat API.
+#### Metode Request API
+1. GET, berfungsi untuk membaca data/resource dari REST server
+2. POST, berfungsi untuk membuat sebuah data/resource baru di REST server
+3. PUT, berfungsi untuk memperbaharui data/resource di REST server
+4. DELETE, berfungsi untuk menghapus data/resource dari REST server
+#### Axios
+Library javascript berbasis promise untuk membuat HTTP request
+
+## Data Fetching
+### JSON Server
+JSON Server adalah sebuah package yang dapat digunakan untuk membuat sebuah RESTful API (Application Programming Interface) sederhana dengan menggunakan data dalam format JSON.
+`npm install -g json-server`
+`json-server --watch db.json`
+
+### Membuat HTTP Request
+#### Menggunakan Fetch
+Contoh fetch
+```jsx
+  const onClickGetData = () => {
+    fetch("http://localhost:3000/pokemon")
+      .then((res) => res.json())
+      .then((json) => {
+        setData(json);
+      })
+      .catch((error) => console.log(error));
+  };
+```
+Contoh Post/add
+```jsx
+const onClickPostData = () => {
+    const payload = {
+      name: "Hypno",
+      type: "Psychic",
+      description:
+        "When it locks eyes with an enemy, it will use a mix of psi moves, such as Hypnosis and Confusion.",
+      img: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/097.png",
+    };
+
+    fetch("http://localhost:3000/pokemon", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => alert("New pokemon added!"));
+}
+```
+#### Menggunakan Axios
+
+```jsx
+const getData = async() =>{
+  try{
+    const res = await axios.get(data)
+    setData(res)
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+useEffect(()=>{
+  getData()
+},[])
+```
+```jsx
+axios.post(data, payload)
+.then(()=>{
+  console.log("add success")
+  getData()
+})
+.catch((err)=>console.log(err))
+```
+
+### SWR
+Merupakan React library untuk data fetching. Library ini mampu mengoptimisasi data fetching menggunakan cache dan dapat menghindari request yang berulang. React SWR bukan untuk menggantikan fetch atau axios, tapi digunakan bersama fetch atau axios.
+`npm install swr`
+`import useSWR from "swr";`
+```jsx
+//   use react swr to fetch data
+    const getProducts = (url) => axios.get(url).then((response) => response.data);
+
+    const { data, isLoading, error, mutate } = useSWR(
+            "http://localhost:3000/product",
+            getProducts,
+        // {
+        //     onSuccess: (data) => data.sort((a, b) => a.name.localeCompare(b.name)),
+        // }
+    );
+
+    if (error) return alert(JSON.stringify(erroroccured));
+```
+
+## Form Handling
+# (15) React Form
+- [Form](#form)
+- [Controlled Component vs Uncontrolled Component](#controlled-component-vs-uncontrolled-component)
+- [Basic Validation](#basic-validation)
+
+## Form
+Saat kita mengembangkan aplikasi website yang interaktif, peran form sangat diperlukan. Form dapat menghandle inputan yang diberikan oleh user. Contoh yang sering kita jumpai adalah form registrasi/login.
+
+## Controlled Component vs Uncontrolled Component
+## Basic Validation
+### Manfaat validasi
+- Menyaring input data yang benar agar aplikasi berjalan dengan lancar
+- Melindungi akun user, contohnya pada pembuatan password
+- Melindungi sistem aplikasi
+
+### Tipe Validasi
+#### 1. Client-side
+Validasi yang dilakukan pada sisi klien (browser). Validasi ini dilakukan saat data belum dikirim ke server, sehingga pengguna tidak perlu menunggu respon dari server.
+#### 2. Server-side
+Validasi yang dilakukan pada sisi server. Setelah user submit inputannya, server memvalidasi inputan dari user sebelum dikirim ke database, setelah itu baru mengirim respon ke user. 
+
+### Built-in Form Validation
+- type = menentukan bentuk data
+- required = harus diisi
+- min & max = batasan untuk input tipe number
+- minlength & maxlength = batasan untuk input tipe text
+- pattern = batasan yang mendefinisikan pola data yang boleh dimasukkan
+
+### Menggunakan Javascript
+- onChange = validasi akan dilakukan setiap ada perubahan
+- onSubmit = validasi dilakukan setiap submit inputan
+
+### React Hook Form
+Merupakan suatu library yang dapat digunakan untuk handle form dan validasi form.
+`npm install react-hook-form`
+`import { useForm } from "react-hook-form";`
+`const {register} = useForm()`
+`{...register("name")}`
+
+Handle Submit
+```jsx
+const { register, handleSubmit } = useForm();
+
+<form
+  className="flex flex-col gap-4 mt-4"
+  onSubmit={handleSubmit(onSubmitForm)}
+></form>
+```
+```jsx
+const onSubmitForm = (data) => {
+    console.log(data);
+  };
+```
+
+### YUP
+YUP adalah sebuah pembuat skema JavaScript untuk parsing dan validasi suatu value.
+`npm install yup`
+`npm install @hookform/resolvers`
+`import { yupResolver } from "@hookform/resolvers/yup";`
+Contoh skema
+```jsx
+  const schema = yup.object().shape({
+    name: yup.string().required("Name is required"),
+    email: yup.string().email().required("Email is required"),
+  });
+```
+```jsx
+const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+```
+```jsx
+<p className="error">{errors.email?.message}</p>
+```
+
+### Sweet Alert 2
+Untuk stylyng alert
+`npm install sweetalert2`
+Contoh
+```jsx
+Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+    if (result.isConfirmed) {
+        axios.delete(`http://localhost:3000/product/${id}`).then(() => mutate());
+        Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+        });
+    }
+});
+```
