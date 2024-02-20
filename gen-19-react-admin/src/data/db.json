@@ -349,6 +349,47 @@
           "dataPreview": "../images/product-1.2.webp"
         }
       ]
+    },
+    {
+      "category": "best seller",
+      "name": "cardi stripes",
+      "price": 2990,
+      "description": "",
+      "dataPrev": [
+        {
+          "dataPreview": "https://image.uniqlo.com/GU/ST3/AsianCommon/imagesgoods/350126/item/goods_01_350126.jpg?width=700",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "https://image.uniqlo.com/GU/ST3/AsianCommon/imagesgoods/350126/item/goods_05_350126.jpg?width=700",
+          "color": "black"
+        },
+        {
+          "dataPreview": "https://image.uniqlo.com/GU/ST3/AsianCommon/imagesgoods/350126/sub/goods_350126_sub18.jpg?width=700",
+          "color": "cream"
+        },
+        {
+          "dataPreview": "https://image.uniqlo.com/GU/ST3/AsianCommon/imagesgoods/350126/sub/goods_350126_sub10.jpg?width=700",
+          "color": "cream"
+        }
+      ],
+      "dataSize": [
+        "S",
+        "M",
+        "L",
+        "L"
+      ],
+      "dataColor": [
+        {
+          "colorName": "cream",
+          "hexCode": "#FAF6F3"
+        },
+        {
+          "colorName": "black",
+          "hexCode": "#FFFFFF"
+        }
+      ],
+      "id": "e453"
     }
   ]
 }
