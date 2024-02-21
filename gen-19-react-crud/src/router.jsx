@@ -4,6 +4,7 @@ import ProductDetail from "./pages/productDetail";
 import ErrorPage from "./pages/error";
 import AddProduct from "./pages/addProduct";
 import EditProduct from "./pages/editProduct";
+import Test from "./pages/test";
 
 export default function Router() {
     return (
@@ -13,6 +14,7 @@ export default function Router() {
             <Route path="/productdetail/:id" element={<ProductDetail />} />
             <Route path="/addproduct" element={<AddProduct />} />
             <Route path="/editproduct/:id" element={<EditProduct />} />
+            <Route path="/test" element={<Test />} />
             <Route path="*" element={<ErrorPage code="404" title="Ooopss Page Not Found" />} />
         </Routes>
     )
