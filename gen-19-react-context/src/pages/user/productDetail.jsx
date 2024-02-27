@@ -99,7 +99,7 @@ export default function ProductDetail() {
     //
     setDataCheckout((prevDataCheckout) => {
       const newDataCheckout = [...prevDataCheckout];
-      console.log(prevDataCheckout)
+      // console.log(prevDataCheckout)
       const existingItemIndex = newDataCheckout.findIndex(
         (item) =>
           item.id === data.id &&
@@ -107,7 +107,7 @@ export default function ProductDetail() {
           item.color === color
       );
 
-      console.log(existingItemIndex)
+      // console.log(existingItemIndex)
 
       if (existingItemIndex !== -1) {
         newDataCheckout[existingItemIndex].qty += qty;
