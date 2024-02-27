@@ -114,21 +114,17 @@ export default function ProductDetail() {
             },
           ]);
         }
-      } else if (found.size === size) {
-        if (found.color === color) {
-          setDataCheckout([...dataCheckout, (dataCheckout[index].qty += qty)]);
-        } else {
-          setDataCheckout([
-            ...dataCheckout,
-            {
-              ...data,
-              qty,
-              prod,
-              color,
-              size,
-            },
-          ]);
-        }
+      } else {
+        setDataCheckout([
+          ...dataCheckout,
+          {
+            ...data,
+            qty,
+            prod,
+            color,
+            size,
+          },
+        ]);
       }
     } else {
       setDataCheckout([
