@@ -100,9 +100,12 @@ export default function ProductDetail() {
     const index = dataCheckout.indexOf(found);
     if (found) {
       if (found.color === color) {
+        console.log("color")
         if (found.size === size) {
+          console.log("color+size")
           setDataCheckout([...dataCheckout, (dataCheckout[index].qty += qty)]);
         } else {
+          console.log("color aja")
           setDataCheckout([
             ...dataCheckout,
             {
@@ -115,6 +118,7 @@ export default function ProductDetail() {
           ]);
         }
       } else {
+        console.log("ga color")
         setDataCheckout([
           ...dataCheckout,
           {
@@ -127,6 +131,7 @@ export default function ProductDetail() {
         ]);
       }
     } else {
+      console.log("ganemu")
       setDataCheckout([
         ...dataCheckout,
         {
