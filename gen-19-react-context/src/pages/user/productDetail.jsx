@@ -96,53 +96,33 @@ export default function ProductDetail() {
   };
 
   const handleSubmit = () => {
-    const found = dataCheckout.find((item) => item.id === data.id);
-    const index = dataCheckout.indexOf(found);
-    if (found) {
-      if (found.color === color) {
-        console.log("color")
-        if (found.size === size) {
-          console.log("color+size")
-          setDataCheckout([...dataCheckout, (dataCheckout[index].qty += qty)]);
-        } else {
-          console.log("color aja")
-          setDataCheckout([
-            ...dataCheckout,
-            {
-              ...data,
-              qty,
-              prod,
-              color,
-              size,
-            },
-          ]);
-        }
+    //
+    setDataCheckout((prevDataCheckout) => {
+      const newDataCheckout = [...prevDataCheckout];
+      console.log(prevDataCheckout)
+      const existingItemIndex = newDataCheckout.findIndex(
+        (item) =>
+          item.id === data.id &&
+          item.size === size &&
+          item.color === color
+      );
+
+      console.log(existingItemIndex)
+
+      if (existingItemIndex !== -1) {
+        newDataCheckout[existingItemIndex].qty += qty;
       } else {
-        console.log("ga color")
-        setDataCheckout([
-          ...dataCheckout,
-          {
-            ...data,
-            qty,
-            prod,
-            color,
-            size,
-          },
-        ]);
-      }
-    } else {
-      console.log("ganemu")
-      setDataCheckout([
-        ...dataCheckout,
-        {
+        newDataCheckout.push({
           ...data,
           qty,
           prod,
           color,
           size,
-        },
-      ]);
-    }
+        });
+      }
+
+      return newDataCheckout;
+    });
     navigate("/checkout");
   };
 
