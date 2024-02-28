@@ -108,7 +108,7 @@ export default function Cart() {
                 </button>
               </div>
               <div className="w-[10%] my-auto">{data.price * data.qty}</div>
-              <div className="w-[10%] my-auto flex h-fit justify-center"><button className="p-2 bg-red-400 hover:bg-red-500 text-slate-100 rounded-md">Hapus</button></div>
+              <div className="w-[10%] my-auto flex h-fit justify-center"><button className="p-2 bg-red-400 hover:bg-red-500 text-white font-semibold rounded-md">Hapus</button></div>
             </div>
           </div>
         ))}
