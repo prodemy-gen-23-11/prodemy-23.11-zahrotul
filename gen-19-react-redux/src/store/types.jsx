@@ -1,1 +1,4 @@
+export const ADD_DATA_CART = "UPDATE_DATA_CART";
 export const UPDATE_DATA_CART = "UPDATE_DATA_CART";
+export const REMOVE_ALL_DATA = "REMOVE_ALL_DATA";
+export const REMOVE_DATA = "REMOVE_DATA";

@@ -1,5 +1,6 @@
 // reducers.js
-import { UPDATE_DATA_CART } from "../types";
+import { REMOVE_ALL_DATA, REMOVE_DATA, UPDATE_DATA_CART } from "../types";
+import { ADD_DATA_CART } from "../types";
 
 const initialState = {
   dataCart: [],
@@ -7,7 +8,7 @@ const initialState = {
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_DATA_CART:
+    case ADD_DATA_CART:
       const { data, qty, prod, color, size } = action.payload;
       const existingItemIndex = state.dataCart.findIndex(
         (item) =>
@@ -34,6 +35,24 @@ const cartReducer = (state = initialState, action) => {
           ],
         };
       }
+    case REMOVE_ALL_DATA:
+      return{
+        ...state,
+        dataCart: []
+      }
+
+    case REMOVE_DATA:
+      const newDataCart = state.dataCart.filter(item => item !== action.payload);
+      return { ...state, dataCart: newDataCart };
+
+    case UPDATE_DATA_CART:
+      const newdata = action.payload;
+      console.log("reducer ", newdata)
+      return{
+        ...state,
+        dataCart: newdata
+      }
+
     default:
       return state;
   }

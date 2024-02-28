@@ -7,12 +7,17 @@ import { useNavigate } from "react-router-dom";
 import { CheckoutContext } from "../../context/checkoutContext";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { updateDataCart } from "../../store/actions/cartActions";
+import { removeAllDataCart } from "../../store/actions/cartActions";
+import { removeData } from "../../store/actions/cartActions";
 
 export default function Cart() {
   const navigate = useNavigate();
   // const { dataCheckout } = useContext(CheckoutContext);
   // console.log("hai",dataCheckout)
   const [qty,setQty] = useState()
+  const dispatch = useDispatch();
 
   const dataCart = useSelector((state) => state.cart.dataCart);
   console.log(dataCart);
@@ -21,10 +26,45 @@ export default function Cart() {
     .map((item, id) => item.qty * item.price)
     .reduce((prevVal, curVal) => prevVal + curVal, 0);
 
-  const incrementQty = () => setQty(qty + 1);
-  const decrementQty = () => {
-    if (qty > 2) {
-      setQty(qty - 1);
+  const handleremoveData = (id) => {
+    dispatch(removeData(id))
+  }
+
+  const handleRemoveAllData = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(removeAllDataCart())
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your cart has been deleted.",
+          icon: "success"
+        });
+      }
+    });
+  }
+
+  const incrementQty = (index) => {
+    const newDataCart = [...dataCart];
+    console.log("plus ",newDataCart[index]);
+    newDataCart[index].qty++;
+    dispatch(updateDataCart(newDataCart));
+  };
+
+  const decrementQty = (index) => {
+    const newDataCart = [...dataCart];
+    if (newDataCart[index].qty > 1) {
+      console.log("min ",newDataCart[index])
+      newDataCart[index].qty--;
+      console.log("new ", newDataCart)
+      dispatch(updateDataCart(newDataCart));
     }
   };
 
@@ -57,7 +97,7 @@ export default function Cart() {
 
   return (
     <div className="z-0 my-[5vh] max-w-[80%] m-auto">
-      {console.log(dataCart)}
+      {console.log("cart ",dataCart)}
       <section>
         <h1 className="text-3xl font-semibold mb-[3vh]">Product</h1>
         <div className="flex justify-between items-center align-middle text-center font-semibold bg-first rounded-lg my-2 p-4">
@@ -70,7 +110,7 @@ export default function Cart() {
           <div className="w-[10%]">Price</div>
           <div className="w-[15%]">Quantity</div>
           <div className="w-[10%]">Total Price</div>
-          <div className="w-[10%]"><button className="p-2 rounded-md bg-red-400 text-slate-100 hover:bg-red-500">Delete All</button></div>
+          <div className="w-[10%]"><button onClick={handleRemoveAllData} className="p-2 rounded-md bg-red-400 text-slate-100 hover:bg-red-500">Delete All</button></div>
         </div>
         {dataCart?.map((data, index) => (
           <div key={index}>
@@ -88,7 +128,7 @@ export default function Cart() {
               <div className="flex h-fit w-[15%] my-auto px-6">
                 <button
                   className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 p-3 rounded-l cursor-pointer"
-                  onClick={decrementQty}
+                  onClick={()=>decrementQty(index)}
                 >
                   −
                 </button>
@@ -102,13 +142,15 @@ export default function Cart() {
                 />
                 <button
                   className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 p-3 rounded-r cursor-pointer"
-                  onClick={incrementQty}
+                  onClick={()=>incrementQty(index)}
                 >
                   +
                 </button>
               </div>
               <div className="w-[10%] my-auto">{data.price * data.qty}</div>
-              <div className="w-[10%] my-auto flex h-fit justify-center"><button className="p-2 bg-red-400 hover:bg-red-500 text-white font-semibold rounded-md">Hapus</button></div>
+              <div className="w-[10%] my-auto flex h-fit justify-center">
+                <button onClick={()=>handleremoveData(data)} className="p-2 bg-red-400 hover:bg-red-500 text-white font-semibold rounded-md">Hapus</button>
+              </div>
             </div>
           </div>
         ))}

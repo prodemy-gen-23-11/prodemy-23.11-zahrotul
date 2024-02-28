@@ -13,7 +13,7 @@ import axios from "axios";
 import useSWR from "swr";
 // import { CheckoutContext } from "../../context/checkoutContext";
 import { useDispatch } from "react-redux";
-import { updateDataCart } from "../../store/actions/updateDataCart";
+import { addDataCart } from "../../store/actions/cartActions";
 
 export default function ProductDetail() {
   const navigate = useNavigate();
@@ -98,7 +98,7 @@ export default function ProductDetail() {
   };
 
   const handleSubmit = () => {
-    dispatch(updateDataCart(data, qty, prod, color, size));
+    dispatch(addDataCart(data, qty, prod, color, size));
     navigate("/cart");
   };
 
