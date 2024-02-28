@@ -8,6 +8,8 @@ import { CheckoutContext } from "../../context/checkoutContext";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { decrementQty } from "../../store/actions/cartActions";
+import { incrementQty } from "../../store/actions/cartActions";
 import { updateDataCart } from "../../store/actions/cartActions";
 import { removeAllDataCart } from "../../store/actions/cartActions";
 import { removeData } from "../../store/actions/cartActions";
@@ -22,9 +24,10 @@ export default function Cart() {
   const dataCart = useSelector((state) => state.cart.dataCart);
   console.log(dataCart);
 
-  const total = dataCart
-    .map((item, id) => item.qty * item.price)
-    .reduce((prevVal, curVal) => prevVal + curVal, 0);
+  const total = 0;
+  // const total = dataCart
+  //   .map((item, id) => item.qty * item.price)
+  //   .reduce((prevVal, curVal) => prevVal + curVal, 0);
 
   const handleremoveData = (id) => {
     dispatch(removeData(id))
@@ -51,21 +54,12 @@ export default function Cart() {
     });
   }
 
-  const incrementQty = (index) => {
-    const newDataCart = [...dataCart];
-    console.log("plus ",newDataCart[index]);
-    newDataCart[index].qty++;
-    dispatch(updateDataCart(newDataCart));
+  const handleIncrementQty = (id,color,size) => {
+    dispatch(incrementQty(id,color,size));
   };
 
-  const decrementQty = (index) => {
-    const newDataCart = [...dataCart];
-    if (newDataCart[index].qty > 1) {
-      console.log("min ",newDataCart[index])
-      newDataCart[index].qty--;
-      console.log("new ", newDataCart)
-      dispatch(updateDataCart(newDataCart));
-    }
+  const handleDecrementQty = (id,color,size) => {
+      dispatch(decrementQty(id,color,size));
   };
 
   const buyProduct = (data) => {
@@ -128,7 +122,7 @@ export default function Cart() {
               <div className="flex h-fit w-[15%] my-auto px-6">
                 <button
                   className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 p-3 rounded-l cursor-pointer"
-                  onClick={()=>decrementQty(index)}
+                  onClick={()=>handleDecrementQty(data.id,data.color,data.size)}
                 >
                   −
                 </button>
@@ -142,7 +136,7 @@ export default function Cart() {
                 />
                 <button
                   className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 p-3 rounded-r cursor-pointer"
-                  onClick={()=>incrementQty(index)}
+                  onClick={()=>handleIncrementQty(data.id,data.color,data.size)}
                 >
                   +
                 </button>
