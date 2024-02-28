@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { decrementQty } from "../../store/actions/cartActions";
 import { incrementQty } from "../../store/actions/cartActions";
-import { updateDataCart } from "../../store/actions/cartActions";
 import { removeAllDataCart } from "../../store/actions/cartActions";
 import { removeData } from "../../store/actions/cartActions";
 
@@ -18,20 +17,20 @@ export default function Cart() {
   const navigate = useNavigate();
   // const { dataCheckout } = useContext(CheckoutContext);
   // console.log("hai",dataCheckout)
-  const [qty,setQty] = useState()
+  const [qty, setQty] = useState();
   const dispatch = useDispatch();
 
   const dataCart = useSelector((state) => state.cart.dataCart);
-  console.log(dataCart);
+  // console.log(dataCart);
 
-  const total = 0;
-  // const total = dataCart
-  //   .map((item, id) => item.qty * item.price)
-  //   .reduce((prevVal, curVal) => prevVal + curVal, 0);
+  // const total = 0;
+  const total = dataCart
+    .map((item, id) => item.qty * item.price)
+    .reduce((prevVal, curVal) => prevVal + curVal, 0);
 
   const handleremoveData = (id) => {
-    dispatch(removeData(id))
-  }
+    dispatch(removeData(id));
+  };
 
   const handleRemoveAllData = () => {
     Swal.fire({
@@ -41,25 +40,27 @@ export default function Cart() {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(removeAllDataCart())
+        dispatch(removeAllDataCart());
         Swal.fire({
           title: "Deleted!",
           text: "Your cart has been deleted.",
-          icon: "success"
+          icon: "success",
         });
       }
     });
-  }
-
-  const handleIncrementQty = (id,color,size) => {
-    dispatch(incrementQty(id,color,size));
   };
 
-  const handleDecrementQty = (id,color,size) => {
-      dispatch(decrementQty(id,color,size));
+  const handleIncrementQty = (id, color, size) => {
+    console.log("hin",id,color,size)
+    dispatch(incrementQty(id, color, size));
+  };
+
+  const handleDecrementQty = (id, color, size) => {
+    console.log("hde",id,color,size)
+    dispatch(decrementQty(id, color, size));
   };
 
   const buyProduct = (data) => {
@@ -91,12 +92,14 @@ export default function Cart() {
 
   return (
     <div className="z-0 my-[5vh] max-w-[80%] m-auto">
-      {console.log("cart ",dataCart)}
+      {/* {console.log("cart ", dataCart)} */}
       <section>
         <h1 className="text-3xl font-semibold mb-[3vh]">Product</h1>
         <div className="flex justify-between items-center align-middle text-center font-semibold bg-first rounded-lg my-2 p-4">
           <div className="w-[5%]">
-            <button className="p-2 rounded-md bg-second hover:bg-yellow-600">All</button>
+            <button className="p-2 rounded-md bg-second hover:bg-yellow-600">
+              All
+            </button>
           </div>
           <div className="w-[10%]">Product</div>
           <div className="w-[10%]">Color</div>
@@ -104,7 +107,14 @@ export default function Cart() {
           <div className="w-[10%]">Price</div>
           <div className="w-[15%]">Quantity</div>
           <div className="w-[10%]">Total Price</div>
-          <div className="w-[10%]"><button onClick={handleRemoveAllData} className="p-2 rounded-md bg-red-400 text-slate-100 hover:bg-red-500">Delete All</button></div>
+          <div className="w-[10%]">
+            <button
+              onClick={handleRemoveAllData}
+              className="p-2 rounded-md bg-red-400 text-slate-100 hover:bg-red-500"
+            >
+              Delete All
+            </button>
+          </div>
         </div>
         {dataCart?.map((data, index) => (
           <div key={index}>
@@ -122,7 +132,9 @@ export default function Cart() {
               <div className="flex h-fit w-[15%] my-auto px-6">
                 <button
                   className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 p-3 rounded-l cursor-pointer"
-                  onClick={()=>handleDecrementQty(data.id,data.color,data.size)}
+                  onClick={() =>
+                    handleDecrementQty(data.id, data.color, data.size)
+                  }
                 >
                   −
                 </button>
@@ -136,20 +148,30 @@ export default function Cart() {
                 />
                 <button
                   className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 p-3 rounded-r cursor-pointer"
-                  onClick={()=>handleIncrementQty(data.id,data.color,data.size)}
+                  onClick={() =>
+                    handleIncrementQty(data.id, data.color, data.size)
+                  }
                 >
                   +
                 </button>
               </div>
               <div className="w-[10%] my-auto">{data.price * data.qty}</div>
               <div className="w-[10%] my-auto flex h-fit justify-center">
-                <button onClick={()=>handleremoveData(data)} className="p-2 bg-red-400 hover:bg-red-500 text-white font-semibold rounded-md">Hapus</button>
+                <button
+                  onClick={() => handleremoveData(data)}
+                  className="p-2 bg-red-400 hover:bg-red-500 text-white font-semibold rounded-md"
+                >
+                  Hapus
+                </button>
               </div>
             </div>
           </div>
         ))}
         <div className="flex justify-between items-center align-middle fixed bottom-4 bg-second rounded-lg p-4 w-[80vw]">
-          <div>Total <span className="ml-2 font-bold text-4xl self-center">{total}</span></div>
+          <div>
+            Total{" "}
+            <span className="ml-2 font-bold text-4xl self-center">{total}</span>
+          </div>
           <button
             onClick={buyProduct}
             className="rounded-lg bg-first px-8 py-3 text-xl font-bold hover:bg-yellow-600 text-white self-center"
