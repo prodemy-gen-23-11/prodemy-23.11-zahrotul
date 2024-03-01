@@ -43,17 +43,17 @@ export default function Register() {
       role: data.role,
     };
     axios
-      .post("http://localhost:3000/users", payload)
+      .post("http://localhost:3000/register", payload)
       .then(() => {
         Swal.fire({
           title: "Good job!",
           text: "Registered!",
           icon: "success",
         });
+        navigate("/login");
         reset();
       })
       .catch((error) => console.log(error));
-    navigate("/login");
   };
 
   return (

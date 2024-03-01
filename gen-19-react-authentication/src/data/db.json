@@ -300,11 +300,18 @@
   ],
   "users": [
     {
-      "id": "c5eb",
       "email": "zo@mail.com",
+      "password": "$2a$10$OY6xL4mANGwPo2112hE8bu43R5A1ylQ8.n7nfO0yK9EZeXObrWBMi",
       "name": "zo",
-      "password": "zo123",
-      "role": "user"
+      "role": "user",
+      "id": 1
+    },
+    {
+      "email": "bisri@gmail.com",
+      "password": "$2a$10$vXmG3y5qBwutPfO5In6YxOPS4ulrGpmU0xHxIQQQbIJar39T5kOJu",
+      "name": "bisri",
+      "role": "admin",
+      "id": 2
     }
   ]
 }

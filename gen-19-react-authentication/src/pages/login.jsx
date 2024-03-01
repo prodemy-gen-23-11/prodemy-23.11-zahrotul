@@ -6,17 +6,21 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setToken, setUser } from "../store/reducers/authSlice";
 
 export default function Login() {
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
-    username: yup.string().required("Field username is required"),
+    email: yup.string().email().required("Field email is required"),
     password: yup.string().required("Field password is required"),
   });
 
+  const dispatch = useDispatch()
+
   const [defaultValues, setDefaultVal] = useState({
-    username: "",
+    email: "",
     password: ""
   });
 
@@ -35,18 +39,18 @@ export default function Login() {
     console.log("submit ", data);
 
     const payload = {
-        username: data.username,
-        password: data.password,
-        role: data.role
+        email: data.email,
+        password: data.password
     };
     axios
         .post("http://localhost:3000/login", payload)
-        .then(() => {
+        .then((res) => {
             const { accessToken, user } = res.data;
             dispatch(setToken(accessToken));
             dispatch(setUser(user));
-            if(user.name=='admin') navigate("/productlist")
-            else navigate("/dashboard")
+            console.log(user.role)
+            if(user.role==="admin") navigate("/productlist")
+            else navigate("/")
             reset();
             Swal.fire({
                 title: "Good job!",
@@ -67,14 +71,14 @@ export default function Login() {
           onSubmit={handleSubmit(onSubmitForm)}
         >
           <div>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">Email</label>
             <input
-              placeholder="Username"
+              placeholder="Email"
               className="w-full rounded-lg border-[1px] border-gray-400 p-4 pe-12 text-sm focus:outline-black"
-              {...register("username")}
-              id="username"
+              {...register("email")}
+              id="email"
             />
-            <p className="error text-red-500">{errors.username?.message}</p>
+            <p className="error text-red-500">{errors.email?.message}</p>
           </div>
 
           <div>
