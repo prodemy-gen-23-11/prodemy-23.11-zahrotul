@@ -42,15 +42,15 @@
             "dataColor" : [
                 {
                     "name" : "cream",
-                    "hexCode" : "bg-[#FAF6F3]"
+                    "hexCode" : "bg-FAF6F3"
                 },
                 {
                     "name" : "chocolate",
-                    "hexCode" : "bg-[#836949]"
+                    "hexCode" : "bg-836949"
                 },
                 {
                     "name" : "black",
-                    "hexCode" : "bg-[#FFFFFF]"
+                    "hexCode" : "bg-FFFFFF"
                 }
             ]
         },
@@ -88,11 +88,11 @@
             "dataColor" : [
                 {
                     "name" : "cream",
-                    "hexCode" : "bg-[#FAF6F3]"
+                    "hexCode" : "bg-FAF6F3"
                 },
                 {
                     "name" : "black",
-                    "hexCode" : "bg-[#FFFFFF]"
+                    "hexCode" : "bg-FFFFFF"
                 }
             ]
         },
@@ -138,11 +138,11 @@
             "dataColor" : [
                 {
                     "name" : "cream",
-                    "hexCode" : "bg-[#FAF6F3]"
+                    "hexCode" : "bg-FAF6F3"
                 },
                 {
                     "name" : "black",
-                    "hexCode" : "bg-[#FFFFFF]"
+                    "hexCode" : "bg-FFFFFF"
                 }
             ]
         },
@@ -196,15 +196,15 @@
             "dataColor" : [
                 {
                     "name" : "cream",
-                    "hexCode" : "bg-[#FAF6F3]"
+                    "hexCode" : "bg-FAF6F3"
                 },
                 {
                     "name" : "yellow",
-                    "hexCode" : "bg-[#EBCC7E]"
+                    "hexCode" : "bg-EBCC7E"
                 },
                 {
                     "name" : "black",
-                    "hexCode" : "bg-[#FFFFFF]"
+                    "hexCode" : "bg-FFFFFF"
                 }
             ]
         },
@@ -266,19 +266,19 @@
             "dataColor" : [
                 {
                     "name" : "cream",
-                    "hexCode" : "bg-[#FAF6F3]"
+                    "hexCode" : "bg-FAF6F3"
                 },
                 {
                     "name" : "blue",
-                    "hexCode" : "bg-[#9DB1C8]"
+                    "hexCode" : "bg-9DB1C8"
                 },
                 {
                     "name" : "purple",
-                    "hexCode" : "bg-[#AA9BB4]"
+                    "hexCode" : "bg-AA9BB4"
                 },
                 {
                     "name" : "gray",
-                    "hexCode" : "bg-[#505554]"
+                    "hexCode" : "bg-505554"
                 }
             ]
         }
